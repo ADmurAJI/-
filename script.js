@@ -34,3 +34,48 @@ document.addEventListener("keydown", function (e) {
 });
 
 /*---------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* Cookie message */
+
+const message = document.createElement("div");
+message.classList.add("cookie-message");
+message.innerHTML =
+  'Мы используем на этом сайте cookie для улучшения функциональности. <button class="btn btn--close--cookie">Ok!</button>';
+
+message.style.width = "100%";
+message.style.height = "100px";
+message.style.position = "fixed";
+message.style.bottom = "0px";
+message.style.zIndex = "1";
+
+const header = document.querySelector(".header");
+header.append(message);
+
+document
+  .querySelector(".btn--close--cookie")
+  .addEventListener("click", function () {
+    message.remove();
+  });
+
+/*****************************************************************************************************************************************************/
+
+/* Плавное прокручивание */
+
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
+
+btnScrollTo.addEventListener("click", function () {
+  // Старый способ
+
+  //const section1Coords = section1.getBoundingClientRect();
+
+  //window.pageXOffset, window.pageYOffset - текущее прокручивание
+
+  // window.scrollTo({
+  //   left: section1Coords.left + window.pageXOffset,
+  //   top: section1Coords.top + window.pageYOffset,
+  //   behavior: "smooth",
+  // });
+
+  section1.scrollIntoView({ behavior: "smooth" });
+});

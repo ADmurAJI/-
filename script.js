@@ -65,6 +65,8 @@ const btnScrollTo = document.querySelector(".btn--scroll-to");
 const section1 = document.querySelector("#section--1");
 
 btnScrollTo.addEventListener("click", function () {
+  section1.scrollIntoView({ behavior: "smooth" });
+
   // Старый способ
 
   //const section1Coords = section1.getBoundingClientRect();
@@ -76,6 +78,17 @@ btnScrollTo.addEventListener("click", function () {
   //   top: section1Coords.top + window.pageYOffset,
   //   behavior: "smooth",
   // });
+});
 
-  section1.scrollIntoView({ behavior: "smooth" });
+/*****************************************************************************************************************************************************/
+
+// Плавная навигация
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+  console.log(e.target);
+  if (e.target.classList.contains("nav__link")) {
+    const href = e.target.getAttribute("href");
+    document.querySelector(href).scrollIntoView({ behavior: "smooth" });
+  }
 });

@@ -92,3 +92,14 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
     document.querySelector(href).scrollIntoView({ behavior: "smooth" });
   }
 });
+
+// Вкладки
+
+const tabs = document.querySelector(".operations__tab");
+const tabContainer = document.querySelector(".operations__tab-container");
+const tabContens = document.querySelectorAll(".operations__content");
+
+tabContainer.addEventListener("click", function (e) {
+  const clickedButton = e.target.closest(".operations__tab");
+  console.log(clickedButton);
+});

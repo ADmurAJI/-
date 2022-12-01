@@ -95,11 +95,29 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
 
 // Вкладки
 
-const tabs = document.querySelector(".operations__tab");
+const tabs = document.querySelectorAll(".operations__tab");
 const tabContainer = document.querySelector(".operations__tab-container");
 const tabContens = document.querySelectorAll(".operations__content");
 
 tabContainer.addEventListener("click", function (e) {
   const clickedButton = e.target.closest(".operations__tab");
-  console.log(clickedButton);
+
+  if (!clickedButton) return;
+
+  // Активная вкладка
+
+  tabs.forEach((tab) => tab.classList.remove("operations__tab--active"));
+
+  clickedButton.classList.add("operations__tab--active");
+
+  // Активный контент
+  tabContens.forEach((content) =>
+    content.classList.remove("operations__content--active")
+  );
+
+  document
+    .querySelector(`.operations__content--${clickedButton.dataset.tab}`)
+    .classList.add("operations__content--active");
 });
+
+/*****************************************************************************************************************************************************/

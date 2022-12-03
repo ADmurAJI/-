@@ -93,6 +93,8 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
   }
 });
 
+/*****************************************************************************************************************************************************/
+
 // Вкладки
 
 const tabs = document.querySelectorAll(".operations__tab");
@@ -121,3 +123,33 @@ tabContainer.addEventListener("click", function (e) {
 });
 
 /*****************************************************************************************************************************************************/
+
+// Анимация потускнения на панели навигации
+
+const nav = document.querySelector(".nav");
+
+const navListHoverAnimation = function (e, opacity) {
+  if (e.target.classList.contains("nav__link")) {
+    const linkOver = e.target;
+    const siblingLinks = linkOver
+      .closest(".nav__links")
+      .querySelectorAll(".nav__link");
+
+    const logo = linkOver.closest(".nav").querySelector("img");
+    const logoText = linkOver.closest(".nav").querySelector(".nav__text");
+
+    siblingLinks.forEach((element) => {
+      if (element !== linkOver) element.style.opacity = opacity;
+    });
+    logo.style.opacity = opacity;
+    logoText.style.opacity = opacity;
+  }
+};
+
+nav.addEventListener("mouseover", function (e) {
+  navListHoverAnimation(e, 0.3);
+});
+
+nav.addEventListener("mouseout", function (e) {
+  navListHoverAnimation(e, 1);
+});

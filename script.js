@@ -86,7 +86,6 @@ btnScrollTo.addEventListener("click", function () {
 
 document.querySelector(".nav__links").addEventListener("click", function (e) {
   e.preventDefault();
-  console.log(e.target);
   if (e.target.classList.contains("nav__link")) {
     const href = e.target.getAttribute("href");
     document.querySelector(href).scrollIntoView({ behavior: "smooth" });
@@ -153,3 +152,27 @@ nav.addEventListener("mouseover", function (e) {
 nav.addEventListener("mouseout", function (e) {
   navListHoverAnimation(e, 1);
 });
+
+//*****************************************************************************************************************************************************/
+
+// Sticky navigation - Intersection Observer API
+
+const navHeight = nav.getBoundingClientRect().height;
+
+const getStickNav = function (entries) {
+  const entry = entries[0];
+
+  if (!entry.isIntersecting) {
+    nav.classList.add("sticky");
+  } else {
+    nav.classList.remove("sticky");
+  }
+};
+
+const observer = new IntersectionObserver(getStickNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`,
+});
+
+observer.observe(header);
